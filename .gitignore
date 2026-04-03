@@ -41,3 +41,10 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Local / internal docs (not for remote)
+DESIGN.md
+pocket.md
+
+# Allow this repo’s README if a global gitignore uses *.md
+!README.md
