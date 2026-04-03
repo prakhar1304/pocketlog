@@ -21,35 +21,35 @@ Screen recording walkthrough (download or open locally):
 
 **[`appUI/demoVideo.mp4`](./appUI/demoVideo.mp4)**
 
-> On GitHub: open the file in the repo or use *View raw* to play/download.
+> On GitHub: open the file in the repo or use _View raw_ to play/download.
 
 ---
 
 ## Screenshots
 
-| Home & balance | Transactions | Goals |
-|:---:|:---:|:---:|
+|      Home & balance      |           Transactions           |           Goals           |
+| :----------------------: | :------------------------------: | :-----------------------: |
 | ![Home](./appUI/ui1.jpg) | ![Transactions](./appUI/ui2.jpg) | ![Goals](./appUI/ui3.jpg) |
 
-| Insights | Profile |
-|:---:|:---:|
+|           Insights           |           Profile           |
+| :--------------------------: | :-------------------------: |
 | ![Insights](./appUI/ui4.jpg) | ![Profile](./appUI/ui5.jpg) |
 
-*If your captures map to different tabs, swap image filenames in `appUI/` or update the table above.*
+_If your captures map to different tabs, swap image filenames in `appUI/` or update the table above._
 
 ---
 
 ## How this maps to the assignment
 
-| Requirement | Pocketlog implementation |
-|-------------|-------------------------|
-| **Home dashboard** | Balance, income, expenses (`BalanceHeroCard`), 7-day **weekly spending** chart, recent transactions with empty state. |
-| **Transaction tracking** | Add / **edit** (`/add-transaction`, optional `id`), **delete** (row actions / long-press + confirm), **search** + **filter chips** (all / income / expense), grouped history by date. |
-| **Goal or challenge** | **Goals** tab: savings targets (with **add-to-savings**), **streaks** (manual advance or **auto from daily logs**), **budget** per category with spend vs limit and alert toggle. Stats tie to real transactions. |
-| **Insights** | Month picker, **spending by category** (donut), **this week vs last week**, stat row (biggest category, avg daily, net saved), top transactions. |
-| **Mobile UX** | Custom tab bar, safe areas, haptics, dialogs, onboarding + profile setup, empty / no-results states, keyboard-friendly forms. |
-| **Data** | **AsyncStorage** + **Zustand** (`persist`) for transactions, goals, and app settings. Optional seed data for first-run transactions. |
-| **Structure** | `app/` (Expo Router screens), `src/components`, `src/store`, `src/utils` — UI separated from stats/CSV/export helpers. |
+| Requirement              | Pocketlog implementation                                                                                                                                                                                          |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Home dashboard**       | Balance, income, expenses (`BalanceHeroCard`), 7-day **weekly spending** chart, recent transactions with empty state.                                                                                             |
+| **Transaction tracking** | Add / **edit** (`/add-transaction`, optional `id`), **delete** (row actions / long-press + confirm), **search** + **filter chips** (all / income / expense), grouped history by date.                             |
+| **Goal or challenge**    | **Goals** tab: savings targets (with **add-to-savings**), **streaks** (manual advance or **auto from daily logs**), **budget** per category with spend vs limit and alert toggle. Stats tie to real transactions. |
+| **Insights**             | Month picker, **spending by category** (donut), **this week vs last week**, stat row (biggest category, avg daily, net saved), top transactions.                                                                  |
+| **Mobile UX**            | Custom tab bar, safe areas, haptics, dialogs, onboarding + profile setup, empty / no-results states, keyboard-friendly forms.                                                                                     |
+| **Data**                 | **AsyncStorage** + **Zustand** (`persist`) for transactions, goals, and app settings. Optional seed data for first-run transactions.                                                                              |
+| **Structure**            | `app/` (Expo Router screens), `src/components`, `src/store`, `src/utils` — UI separated from stats/CSV/export helpers.                                                                                            |
 
 ---
 
@@ -117,12 +117,6 @@ src/
 appUI/             # README screenshots + demo MP4 (see appUI/README.md)
 ```
 
-More visual/design context: **`DESIGN.md`**.
-
----
-
 ## Author
 
 **GitHub:** [github.com/prakhar1304](https://github.com/prakhar1304)
-
-Repository URL (adjust if your fork name differs): `https://github.com/prakhar1304/pocketlog`
