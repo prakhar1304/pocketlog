@@ -63,7 +63,7 @@ export default function GoalsScreen() {
           label: "Remove",
           variant: "danger",
           onPress: () => {
-            removeGoal(id);
+            void removeGoal(id);
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
           },
         },
@@ -82,12 +82,12 @@ export default function GoalsScreen() {
           {
             label: "Turn off",
             variant: "danger",
-            onPress: () => updateGoal(g.id, { alertEnabled: false }),
+            onPress: () => void updateGoal(g.id, { alertEnabled: false }),
           },
         ],
       });
     } else {
-      updateGoal(g.id, { alertEnabled: true });
+      void updateGoal(g.id, { alertEnabled: true });
       Haptics.selectionAsync();
     }
   };
@@ -110,7 +110,7 @@ export default function GoalsScreen() {
             goal={g}
             onAddSaved={(add) => {
               const row = g as SavingsGoal;
-              updateGoal(g.id, {
+              void updateGoal(g.id, {
                 saved: Math.min(row.target, row.saved + add),
               });
             }}
@@ -125,7 +125,7 @@ export default function GoalsScreen() {
               g.streakKind === "daily_log"
                 ? undefined
                 : () =>
-                    updateGoal(g.id, {
+                    void updateGoal(g.id, {
                       currentDay: Math.min(
                         g.targetDays,
                         g.currentDay + 1
@@ -148,7 +148,7 @@ export default function GoalsScreen() {
   };
 
   const onAdd = (input: GoalInput) => {
-    addGoal(input);
+    void addGoal(input);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   };
 

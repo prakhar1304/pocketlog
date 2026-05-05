@@ -88,7 +88,7 @@ export default function AddTransactionScreen() {
     Haptics.selectionAsync();
   };
 
-  const save = () => {
+  const save = async () => {
     if (!canSave) return;
     const payload = {
       title: title.trim(),
@@ -99,9 +99,9 @@ export default function AddTransactionScreen() {
       note: note.trim(),
     };
     if (id) {
-      updateTransaction(id, payload);
+      await updateTransaction(id, payload);
     } else {
-      addTransaction(payload);
+      await addTransaction(payload);
     }
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     router.back();

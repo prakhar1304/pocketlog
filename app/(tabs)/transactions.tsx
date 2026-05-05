@@ -75,7 +75,7 @@ export default function TransactionsScreen() {
           label: "Delete",
           variant: "danger",
           onPress: () => {
-            deleteTransaction(tid);
+            void deleteTransaction(tid);
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
           },
         },

@@ -16,6 +16,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { DialogProvider } from "../src/context/DialogContext";
 import { getAppColors } from "../src/constants/theme";
+import { hydrateDataStores } from "../src/db/hydrateStores";
 import { useAppStore } from "../src/store/useAppStore";
 
 SplashScreen.preventAutoHideAsync();
@@ -36,6 +37,7 @@ export default function RootLayout() {
   const [hydrated, setHydrated] = useState(() =>
     useAppStore.persist.hasHydrated()
   );
+  const [dataReady, setDataReady] = useState(false);
 
   const onHydrated = useCallback(() => {
     setHydrated(true);
@@ -47,16 +49,26 @@ export default function RootLayout() {
   }, [onHydrated]);
 
   useEffect(() => {
-    if (fontsLoaded && hydrated) {
+    let cancelled = false;
+    void hydrateDataStores().finally(() => {
+      if (!cancelled) setDataReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (fontsLoaded && hydrated && dataReady) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, hydrated]);
+  }, [fontsLoaded, hydrated, dataReady]);
 
   useEffect(() => {
     void SystemUI.setBackgroundColorAsync(surface);
   }, [surface]);
 
-  if (!fontsLoaded || !hydrated) {
+  if (!fontsLoaded || !hydrated || !dataReady) {
     return (
       <View
         style={{ flex: 1, backgroundColor: surface }}

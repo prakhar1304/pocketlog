@@ -18,7 +18,6 @@ import { PrimaryButton } from "../src/components/ui/PrimaryButton";
 import { Radius, Spacing, Typography } from "../src/constants/theme";
 import { useAppColors } from "../src/hooks/useAppColors";
 import { useAppStore } from "../src/store/useAppStore";
-import { useTransactionStore } from "../src/store/useTransactionStore";
 
 const PAGE_IMAGES = [
   require("../assets/images/page1.png"),
@@ -60,7 +59,6 @@ export default function OnboardingScreen() {
   const setHasFinishedIntroSlides = useAppStore(
     (s) => s.setHasFinishedIntroSlides,
   );
-  const seedIfEmpty = useTransactionStore((s) => s.seedIfEmpty);
   const padL = Spacing.screenAsymmetric.left;
   const padR = Spacing.screenAsymmetric.right;
 
@@ -71,7 +69,6 @@ export default function OnboardingScreen() {
   };
 
   const goToProfileStep = () => {
-    seedIfEmpty();
     setHasFinishedIntroSlides(true);
     router.replace("/onboarding-profile" as Href);
   };

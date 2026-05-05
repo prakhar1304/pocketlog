@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { clearAllTables } from "../db/database";
 import { appStoreDefaults, useAppStore } from "../store/useAppStore";
 import { useGoalStore } from "../store/useGoalStore";
 import { useTransactionStore } from "../store/useTransactionStore";
@@ -10,8 +11,9 @@ const PERSIST_KEYS = [
   "pocketlog-goals",
 ] as const;
 
-/** Clears persisted slices and resets in-memory stores (returns user to onboarding). */
+/** Clears SQLite tables, legacy AsyncStorage keys, and app settings (returns user to onboarding). */
 export async function clearAllUserData() {
+  await clearAllTables();
   await Promise.all(PERSIST_KEYS.map((k) => AsyncStorage.removeItem(k)));
   useTransactionStore.setState({ transactions: [] });
   useGoalStore.setState({ goals: [] });
